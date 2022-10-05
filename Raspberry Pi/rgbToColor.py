@@ -105,7 +105,7 @@ def rgbToName(pulled):
     return color
 
 def photo_to_color():
-    pulledList = extcolors.extract_from_path('output.jpg', tolerance = 5, limit = 10)
+    pulledList = extcolors.extract_from_path('/home/legopi/Lego_Sorter/Raspberry Pi/Output/output.jpg', tolerance = 5, limit = 10)
 
     rgbList = pulledList[0]
 

@@ -2,7 +2,7 @@ import cv2
 
 def convert(border_percentage):
     imageLocation = 'photo.jpg'
-    exportLocation = 'output.jpg'
+    exportLocation = '/home/legopi/Lego_Sorter/Raspberry Pi/Output/output.jpg'
 
     img = cv2.imread(imageLocation)
 
@@ -69,5 +69,4 @@ def convert(border_percentage):
 
     #save image
     cv2.imwrite(exportLocation,img_crop)
-
-convert()
+    
