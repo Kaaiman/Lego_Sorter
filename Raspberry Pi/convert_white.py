@@ -9,12 +9,22 @@ def white_convert(border_percentage, noise_thresh):
     bgr_input = cv2.imread(input_dir)
     hsv_input = cv2.cvtColor(bgr_input, cv2.COLOR_BGR2HSV)
 
-    mask = cv2.inRange(hsv_input, np.array([0, 0, 0]), np.array([30, 255, 255]))
+    white_mask = cv2.inRange(hsv_input, np.array([0, 0, 0]), np.array([30, 255, 255]))
 
-    cv2.imshow('mask', mask)
+    cv2.imshow('mask', white_mask)
     cv2.waitKey(0)
 
-    contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    shadow_mask = cv2.inRange(bgr_input, np.array([100, 100, 100]), np.array([160, 160, 160]))
+
+    cv2.imshow('mask', shadow_mask)
+    cv2.waitKey(0)
+
+    final_mask = cv2.max(white_mask, shadow_mask)
+
+    cv2.imshow('mask', final_mask)
+    cv2.waitKey(0)
+
+    contours, hierarchy = cv2.findContours(final_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     contour_img = bgr_input.copy()
 
